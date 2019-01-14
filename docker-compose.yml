@@ -1,0 +1,58 @@
+version: '3.5'
+
+services:
+
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/usr/opt/app
+      - /usr/opt/app/node_modules
+    command: npm start
+    links:
+      - eosiodev:eosiodev
+    depends_on:
+      - eosiodev
+    networks:
+        ebonhaven:
+
+  postgres:
+    image: postgres:11
+    restart: always
+    volumes:
+      - pgsql_data:/var/lib/postgresql/data:Z
+    ports:
+      - '3001:5432'
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      DB_NAME: ebonhavencom
+      DB_USER: user
+      DB_PASSWORD: pass
+      POSTGRES_DB: ebonhavencom
+    networks:
+      ebonhaven:
+  
+  eosiodev:
+    build: ./eosio
+    ports:
+      - "8888:8888"
+      - "9876:9876"
+    environment:
+      DATA_DIR: /root/.local/share
+      CONFIG_DIR: /opt/app/config
+    volumes:
+      - eosio_data:/root/.local/share:Z
+      - ./eosio:/opt/app
+    networks:
+      ebonhaven:
+
+volumes:
+  pgsql_data:
+    external: true
+  eosio_data:
+
+networks:
+  ebonhaven:
+    name: ebonhaven
