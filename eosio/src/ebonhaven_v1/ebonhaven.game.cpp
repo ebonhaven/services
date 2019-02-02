@@ -336,7 +336,7 @@ ebonhaven::reward ebonhaven::generate_reward( name user, encounter s_encounter )
         print(" Comp roll: ", roll);
         for (auto& drop: mob.drop.drops) {
             uint8_t perc = abs(floor((100 * drop.percentage) / 100));
-            print(" Rolled on drop: ", to_string(perc));
+            // print(" Rolled on drop: ", perc);
             if ( roll <= perc ) {
                 print(" Item won: ", drop.item_id);
                 rewardItems.push_back(drop.item_id);

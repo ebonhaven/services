@@ -16,6 +16,12 @@ app.listen(port, () => {
     console.log(`Listening on http://127.0.0.1:${port}`);
 });
 
-Demux.init();
+try {
+    Demux.init();
+} catch (e) {
+    console.log('Error!', e);
+}
+
+
 
 

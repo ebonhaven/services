@@ -2,6 +2,7 @@ import { BaseActionWatcher } from "demux";
 import { MassiveActionHandler } from "demux-postgres";
 import { NodeosActionReader } from "demux-eos"; // Or any other compatible Action Reader
 import massive from "massive";
+import { migrationSequences } from './migrationSequences';
 import { effects } from './effects';
 import { updaters } from './updaters';
 
@@ -10,7 +11,8 @@ const dbConfig = {
     user: "user",
     password: "pass",
     host: "postgres",
-    database: "ebonhavencom"
+    database: "ebonhavencom",
+    schema: "ebonhaven"
 };
 
 const nodeosConfig = {
@@ -21,27 +23,31 @@ const nodeosConfig = {
 export class Demux {
 
     static init() {
+
         massive(dbConfig).then((db) => {
-            console.log(nodeosConfig);
+            const actionHandler = new MassiveActionHandler(
+                [{
+                    updaters,
+                    effects,
+                    versionName: "v1",
+                }],
+                db,
+                dbConfig.schema,
+                migrationSequences
+            );
+    
+            actionHandler.setupDatabase();
+    
             const actionReader = new NodeosActionReader(
                 nodeosConfig.url,
                 nodeosConfig.startBlock
             );
-            //actionReader.initialize();
-
-            const actionHandler = new MassiveActionHandler(
-                [{
-                    versionName: "v1",
-                    updaters,
-                    effects
-                }],
-                db
-            );
-            
-            const actionWatcher = new BaseActionWatcher(actionReader, actionHandler, 250)
+    
+            const actionWatcher = new BaseActionWatcher(actionReader, actionHandler, 250);
+    
             actionWatcher.watch();
-        }, (err) => {
-            console.error(err);
+        }, (e) => {
+            console.log('Error', e);
         });
     }
 }

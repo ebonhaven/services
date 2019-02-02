@@ -5,7 +5,7 @@ const logAccountCreated = (_, payload) => {
 const effects = [
     {
         actionType: "ebonhavencom::newaccount",
-        effect: logAccountCreated
+        run: logAccountCreated
     }
 ];
 

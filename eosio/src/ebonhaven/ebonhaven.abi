@@ -1,13 +1,261 @@
 {
-    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Thu Jan  3 22:09:57 2019",
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Sat Feb  2 07:00:28 2019",
     "version": "eosio::abi/1.1",
     "structs": [
         {
-            "name": "hello",
+            "name": "account",
             "base": "",
             "fields": [
                 {
+                    "name": "id",
+                    "type": "uint64"
+                },
+                {
                     "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "balance",
+                    "type": "asset"
+                },
+                {
+                    "name": "characters",
+                    "type": "uint64[]"
+                },
+                {
+                    "name": "inventory",
+                    "type": "uint64[]"
+                }
+            ]
+        },
+        {
+            "name": "attack",
+            "base": "",
+            "fields": [
+                {
+                    "name": "physical",
+                    "type": "uint32"
+                },
+                {
+                    "name": "spell",
+                    "type": "uint32"
+                }
+            ]
+        },
+        {
+            "name": "basestat",
+            "base": "",
+            "fields": [
+                {
+                    "name": "profession_id",
+                    "type": "uint8"
+                },
+                {
+                    "name": "base_hp",
+                    "type": "uint8"
+                },
+                {
+                    "name": "hp_increase_by_level",
+                    "type": "uint8"
+                },
+                {
+                    "name": "base_attack",
+                    "type": "attack"
+                },
+                {
+                    "name": "base_defense",
+                    "type": "defense"
+                },
+                {
+                    "name": "base_stats",
+                    "type": "stats"
+                },
+                {
+                    "name": "attack_increase_by_level",
+                    "type": "attack"
+                },
+                {
+                    "name": "defense_increase_by_level",
+                    "type": "defense"
+                },
+                {
+                    "name": "stat_increase_by_level",
+                    "type": "stats"
+                }
+            ]
+        },
+        {
+            "name": "character",
+            "base": "",
+            "fields": [
+                {
+                    "name": "character_id",
+                    "type": "uint64"
+                },
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "character_name",
+                    "type": "string"
+                },
+                {
+                    "name": "gender",
+                    "type": "uint8"
+                },
+                {
+                    "name": "profession",
+                    "type": "uint8"
+                },
+                {
+                    "name": "race",
+                    "type": "uint8"
+                },
+                {
+                    "name": "level",
+                    "type": "int32"
+                },
+                {
+                    "name": "experience",
+                    "type": "uint32"
+                },
+                {
+                    "name": "position",
+                    "type": "position"
+                },
+                {
+                    "name": "in_combat",
+                    "type": "uint8"
+                },
+                {
+                    "name": "hp",
+                    "type": "int64"
+                },
+                {
+                    "name": "max_hp",
+                    "type": "uint64"
+                },
+                {
+                    "name": "stats",
+                    "type": "stats"
+                },
+                {
+                    "name": "attack",
+                    "type": "attack"
+                },
+                {
+                    "name": "defense",
+                    "type": "defense"
+                },
+                {
+                    "name": "equipped",
+                    "type": "equipment"
+                }
+            ]
+        },
+        {
+            "name": "defense",
+            "base": "",
+            "fields": [
+                {
+                    "name": "physical",
+                    "type": "uint32"
+                },
+                {
+                    "name": "spell",
+                    "type": "uint32"
+                }
+            ]
+        },
+        {
+            "name": "equipment",
+            "base": "",
+            "fields": [
+                {
+                    "name": "head",
+                    "type": "uint64"
+                },
+                {
+                    "name": "neck",
+                    "type": "uint64"
+                },
+                {
+                    "name": "shoulders",
+                    "type": "uint64"
+                },
+                {
+                    "name": "chest",
+                    "type": "uint64"
+                },
+                {
+                    "name": "bracers",
+                    "type": "uint64"
+                },
+                {
+                    "name": "hands",
+                    "type": "uint64"
+                },
+                {
+                    "name": "legs",
+                    "type": "uint64"
+                },
+                {
+                    "name": "feet",
+                    "type": "uint64"
+                },
+                {
+                    "name": "mainhand",
+                    "type": "uint64"
+                },
+                {
+                    "name": "offhand",
+                    "type": "uint64"
+                },
+                {
+                    "name": "ranged",
+                    "type": "uint64"
+                },
+                {
+                    "name": "ring1",
+                    "type": "uint64"
+                },
+                {
+                    "name": "ring2",
+                    "type": "uint64"
+                },
+                {
+                    "name": "trinket1",
+                    "type": "uint64"
+                },
+                {
+                    "name": "trinket2",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "globals",
+            "base": "",
+            "fields": [
+                {
+                    "name": "key",
+                    "type": "uint64"
+                },
+                {
+                    "name": "seed",
+                    "type": "uint32"
+                },
+                {
+                    "name": "supply",
+                    "type": "asset"
+                },
+                {
+                    "name": "max_supply",
+                    "type": "asset"
+                },
+                {
+                    "name": "issuer",
                     "type": "name"
                 }
             ]
@@ -19,6 +267,130 @@
                 {
                     "name": "user",
                     "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "newcharacter",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "character_name",
+                    "type": "string"
+                },
+                {
+                    "name": "gender",
+                    "type": "uint8"
+                },
+                {
+                    "name": "profession",
+                    "type": "uint8"
+                },
+                {
+                    "name": "race",
+                    "type": "uint8"
+                }
+            ]
+        },
+        {
+            "name": "position",
+            "base": "",
+            "fields": [
+                {
+                    "name": "world",
+                    "type": "uint8"
+                },
+                {
+                    "name": "zone",
+                    "type": "uint8"
+                },
+                {
+                    "name": "x",
+                    "type": "uint8"
+                },
+                {
+                    "name": "y",
+                    "type": "uint8"
+                },
+                {
+                    "name": "orientation",
+                    "type": "uint8"
+                }
+            ]
+        },
+        {
+            "name": "stats",
+            "base": "",
+            "fields": [
+                {
+                    "name": "stamina",
+                    "type": "uint32"
+                },
+                {
+                    "name": "regen",
+                    "type": "uint32"
+                },
+                {
+                    "name": "perception",
+                    "type": "uint32"
+                },
+                {
+                    "name": "skill",
+                    "type": "uint32"
+                },
+                {
+                    "name": "luck",
+                    "type": "uint32"
+                }
+            ]
+        },
+        {
+            "name": "upsertstats",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "profession_id",
+                    "type": "uint8"
+                },
+                {
+                    "name": "base_hp",
+                    "type": "uint8"
+                },
+                {
+                    "name": "hp_increase_by_level",
+                    "type": "uint8"
+                },
+                {
+                    "name": "base_attack",
+                    "type": "uint32[]"
+                },
+                {
+                    "name": "base_defense",
+                    "type": "uint32[]"
+                },
+                {
+                    "name": "new_stats",
+                    "type": "uint32[]"
+                },
+                {
+                    "name": "attack_increase",
+                    "type": "uint32[]"
+                },
+                {
+                    "name": "defense_increase",
+                    "type": "uint32[]"
+                },
+                {
+                    "name": "stat_increase_by_level",
+                    "type": "uint32[]"
                 }
             ]
         }
@@ -26,17 +398,51 @@
     "types": [],
     "actions": [
         {
-            "name": "hello",
-            "type": "hello",
-            "ricardian_contract": ""
-        },
-        {
             "name": "newaccount",
             "type": "newaccount",
             "ricardian_contract": ""
+        },
+        {
+            "name": "newcharacter",
+            "type": "newcharacter",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "upsertstats",
+            "type": "upsertstats",
+            "ricardian_contract": ""
         }
     ],
-    "tables": [],
+    "tables": [
+        {
+            "name": "accounts",
+            "type": "account",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "basestats",
+            "type": "basestat",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "characters",
+            "type": "character",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "globals",
+            "type": "globals",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        }
+    ],
     "ricardian_clauses": [],
     "variants": [],
     "abi_extensions": []

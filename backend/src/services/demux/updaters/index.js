@@ -5,6 +5,10 @@ const createAccount = async (db, payload, blockInfo) => {
     console.info("\n\nUpdater Block Info >>> \n", blockInfo)
 
     const data = {
+        user: payload.data.user,
+        balance: "0.0000 EBON",
+        inventory: [],
+        characters: []
     }
 
     console.info("DB Data to Insert >>> ", data);
@@ -17,7 +21,7 @@ const createAccount = async (db, payload, blockInfo) => {
 const updaters = [
     {
         actionType: "ebonhavencom::newaccount",
-        updater: createAccount
+        apply: createAccount
     }
 ]
 
